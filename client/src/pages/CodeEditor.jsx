@@ -28,10 +28,6 @@ const CodeEditor = () => {
     //     setOutput(null)
     // },[language,setLanguage])
 
-    useEffect(()=>{
-        console.log(fontSize);
-    },[fontSize])
-
     const runCode = async (language,code,input) => {
         if(!code || !language) return;
         try {
