@@ -10,7 +10,7 @@ const app = express();
 
 app.use(cors(
     {
-        origin: ['*'],
+        origin: ['https://codelab-harshpx.vercel.app/'],
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         allowedHeaders: ['*'],
         credentials: true,
