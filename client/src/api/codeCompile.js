@@ -2,7 +2,7 @@ import React from "react";
 
 
 const codeCompile = async (language, code, input) => {
-    const URL = "/api/compile";
+    const URL = "https://codelab-server-harshpx.vercel.app/api/compile";
     const options = {
         method: "POST",
         headers: {
