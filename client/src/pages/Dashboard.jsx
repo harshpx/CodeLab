@@ -23,7 +23,7 @@ const Dashboard = () => {
                 try {
                     setLoading(true);
                     const data = await fetchCodes(user);
-                    setCodes(data.reverse());
+                    setCodes(data);
                     // console.log(data);
                     setLoading(false);
                 } catch (error) {
@@ -46,7 +46,7 @@ const Dashboard = () => {
                         <span>New Code</span>
                     </div>
                 </div>
-                {codes?.reverse()?.map((curr,index)=>(
+                {codes?.map((curr,index)=>(
                     <CodeCard key={index} curr={curr}/>
                 ))}
             </div>

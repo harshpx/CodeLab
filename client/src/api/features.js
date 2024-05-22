@@ -32,7 +32,8 @@ export const fetchCodes = async(user)=>{
     }
     try {
         const response = await fetch(url, options);
-        const data = await response.json();
+        let data = await response.json();
+        data = data.reverse();
         return data;
     } catch (error) {
         console.log(error);

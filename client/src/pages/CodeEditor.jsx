@@ -72,7 +72,7 @@ const CodeEditor = () => {
             const response = await createCode(user,title,code,language,input);
             console.log('code saved',response);
             const codesRefresh = await fetchCodes(user);
-            setCodes(codesRefresh.reverse());
+            setCodes(codesRefresh);
             setLoading(false);
             navigate('/dashboard');
         }catch(error){
@@ -87,7 +87,7 @@ const CodeEditor = () => {
             const id = currCode._id;
             const response = await updateCode(user,id,title,code,language,input);
             const codesRefresh = await fetchCodes(user);
-            setCodes(codesRefresh.reverse());
+            setCodes(codesRefresh);
             setLoading(false);
             navigate('/dashboard');
         }catch(error){
@@ -102,7 +102,7 @@ const CodeEditor = () => {
             const id = currCode._id;
             const response = await deleteCode(user,id);
             const codesRefresh = await fetchCodes(user);
-            setCodes(codesRefresh.reverse());
+            setCodes(codesRefresh);
             setLoading(false);
             navigate('/dashboard');
         }catch(error){
