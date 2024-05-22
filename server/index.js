@@ -19,7 +19,7 @@ app.use(cors(
     {
         origin: ['https://codelab-harshpx.vercel.app/'],
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['*'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true,
     }
 ));
