@@ -69,6 +69,14 @@ const CodeEditor = () => {
     }
 
     const save = async () => {
+        if(!title){
+            toast("Can't save code without title");
+            return;
+        }
+        if(!code){
+            toast("Can't save code without code");
+            return;
+        }
         if(!title || !code || !language || !user?.token) return;
         try{
             setLoading(true);
@@ -86,6 +94,14 @@ const CodeEditor = () => {
     }
 
     const update = async () => {
+        if(!title){
+            toast("Can't save code without title");
+            return;
+        }
+        if(!code){
+            toast("Can't save code without code");
+            return;
+        }
         if(!title || !code || !language || !user?.token || !currCode) return;
         try{
             setLoading(true);
