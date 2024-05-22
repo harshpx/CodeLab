@@ -3,18 +3,20 @@ import fetch from 'node-fetch';
 
 export const compile = AsyncHandler(async (req, res) => {
     const {language,code,input} = req.body;
-    const url = "https://online-code-compiler.p.rapidapi.com/v1/";
+    const url = "https://api.jdoodle.com/v1/execute";
     const options = {
         method: 'POST',
         headers: {
             'content-type': 'application/json',
-            'X-RapidAPI-Key': process.env.COMPILER_API_KEY,
-            'X-RapidAPI-Host': process.env.COMPILER_API_HOST,
         },
         body: JSON.stringify({
+            clientId: process.env.COMPILER_CLIENT_ID,
+            clientSecret: process.env.COMPILER_CLIENT_SECRET,
+            script: code,
+            stdin: input,
             language: language,
-            code: code,
-            input: input
+            versionIndex: "0",
+            compileOnly: false,
         })
     }
 
