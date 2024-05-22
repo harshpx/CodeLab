@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import AppContext from '../context/AppContext';
+import { toast } from 'react-toastify';
 
 const AuthRedirect = () => {
     const navigate = useNavigate();
@@ -19,8 +20,10 @@ const AuthRedirect = () => {
             localStorage.setItem('currUser',JSON.stringify(userData));
             setUser(userData)
             // console.log(userData);
+            toast.success('Logged in Successfully!');
             navigate('/dashboard');
         }else{
+            toast.error('Login Failed');
             navigate('/');
         }
     }, [navigate, location.search]);

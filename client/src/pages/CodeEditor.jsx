@@ -9,6 +9,7 @@ import AppContext from '../context/AppContext';
 import {codeCompile,createCode, updateCode, deleteCode, fetchCodes} from '../api/features';
 import Loader from '../components/Loader';
 import {useNavigate} from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const monacoLanguages = new Map([
     ['cpp17','cpp'],
@@ -59,8 +60,10 @@ const CodeEditor = () => {
             const result = await codeCompile(language,code,input);
             setOutput(result);
             setLoading(false);
+            toast.success('Code Compiled Successfully');
             // console.log(result);
         } catch (error) {
+            toast.error('Error Compiling Code');
             console.log(error);
         }
     }
@@ -74,8 +77,10 @@ const CodeEditor = () => {
             const codesRefresh = await fetchCodes(user);
             setCodes(codesRefresh);
             setLoading(false);
+            toast.success('Code Created Successfully');
             navigate('/dashboard');
         }catch(error){
+            toast.error('Error Saving Code');
             console.log(error);
         }
     }
@@ -89,8 +94,10 @@ const CodeEditor = () => {
             const codesRefresh = await fetchCodes(user);
             setCodes(codesRefresh);
             setLoading(false);
+            toast.success('Code Updated Successfully');
             navigate('/dashboard');
         }catch(error){
+            toast.error('Error Updating Code');
             console.log(error);
         }
     }
@@ -104,8 +111,10 @@ const CodeEditor = () => {
             const codesRefresh = await fetchCodes(user);
             setCodes(codesRefresh);
             setLoading(false);
+            toast.success('Code Deleted Successfully');
             navigate('/dashboard');
         }catch(error){
+            toast.error('Error Deleting Code');
             console.log(error);
         }
     }
@@ -124,7 +133,7 @@ const CodeEditor = () => {
                     {!isMobile && 
                     <input
                         type='text'
-                        className='md: w-1/5 lg:w-1/3 outline-none bg-[#1e1e1e] text-white placeholder:italic border rounded-md py-0.5 px-2'
+                        className='md: w-1/6 lg:w-1/3 outline-none bg-[#1e1e1e] text-white placeholder:italic border rounded-md py-0.5 px-2 text-center'
                         placeholder='Enter Title Here'
                         onChange={(e) => setTitle(e.target.value)}
                         value={title}
@@ -233,6 +242,7 @@ const CodeEditor = () => {
                     </div>}
                 </div>
             </div>
+            
         </div>
     )
 }

@@ -19,6 +19,7 @@
     "react-loader-spinner": "^6.1.6",
     "react-router-dom": "^6.23.1",
     "react-syntax-highlighter": "^15.5.0",
+    "react-toastify": "^10.0.5",
     "solc": "^0.8.25"
   },
   "devDependencies": {
