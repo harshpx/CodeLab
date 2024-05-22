@@ -54,6 +54,10 @@ const CodeEditor = () => {
     const [loading,setLoading] = useState(false);
 
     const runCode = async (language,code,input) => {
+        if(!code){
+            toast('Enter some code first');
+            return;
+        }
         if(!code || !language) return;
         try {
             setLoading(true);
