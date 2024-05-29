@@ -2,7 +2,7 @@ import {useContext, useState} from 'react';
 import { Modal, ConfigProvider } from 'antd';
 import { FiCodesandbox } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
-import { FaGoogle } from "react-icons/fa";
+import { FaCode } from "react-icons/fa6";
 import AppContext from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import logo from '/icon.png'
@@ -41,16 +41,25 @@ const Header = () => {
                 >
                     Login to save codes
                 </button>
-            </div>: 
-            <button
-                onClick={()=>setModalOpen(true)}
-                className='flex items-center gap-2 hover:bg-white/30 px-2 h-full'
-            >
-                <div className='rounded-full size-8 overflow-hidden'>
-                    <img src={user.dp} alt="user-dp" className='w-full h-full object-cover'/>
-                </div>
-                <span className='text-[14px]'>Hi {user.name.split(' ')[0]}!</span>
-            </button>}
+            </div>:
+            <div className='flex items-center gap-2 h-full'>
+                <button
+                    onClick={()=>setModalOpen(true)}
+                    className='flex items-center gap-2 hover:bg-white/30 px-2 h-full'
+                >
+                    <div className='rounded-full size-8 overflow-hidden'>
+                        <img src={user.dp} alt="user-dp" className='w-full h-full object-cover'/>
+                    </div>
+                    <span className='text-[14px]'>Hi {user.name.split(' ')[0]}!</span>
+                </button>
+                <button
+                    onClick={myCodesHandler}
+                    className='flex items-center gap-2 hover:bg-white/30 px-2 h-full'
+                >
+                    <FaCode size={20}/>
+                    <span className='text-[14px]'>My Codes</span>
+                </button>
+            </div>}
             <ConfigProvider
                 theme={{
                     token:{colorBgMask: 'rgba(10,10,10,0.5)'}
