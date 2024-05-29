@@ -10,7 +10,7 @@ import logo from '/icon.png'
 
 const Header = () => {
 
-    const {user,setUser} = useContext(AppContext);
+    const {user,setUser,setCodes,setCurrCode} = useContext(AppContext);
     const [modalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
 
@@ -20,6 +20,8 @@ const Header = () => {
     const logoutHandler = () => {
         localStorage.removeItem('currUser');
         setUser(null);
+        setCodes([]);
+        setCurrCode(null);
         setModalOpen(false);
         navigate('/')
     }

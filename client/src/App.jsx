@@ -15,7 +15,7 @@ const App = () => {
             <div className='min-w-full min-h-screen bg-black'>
                 <BrowserRouter>
                     <Header/>
-                    <div className='min-w-full overflow-scroll px-2 py-2 md:px-3 md:py-4'>
+                    <div className='min-w-full h-[calc(100vh-45px)] overflow-scroll p-2'>
                         <Routes>
                             <Route path='/' element={<CodeEditor/>}/>
                             <Route path='/auth' element={<AuthRedirect/>}/>
