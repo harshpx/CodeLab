@@ -74,14 +74,17 @@ const CodeEditor = () => {
             setLoading(true);
             const result = await codeCompile(language,code,input);
             setOutput(result);
-            if(result?.output === expectedOutput.trim()){
+
+            if(result?.output?.trim() === expectedOutput?.trim()){
+                console.log('match!');
                 setResult('Passed');
             } else{
+                console.log('no match!');
                 setResult('Failed');
             }
             setLoading(false);
             toast.success('Code Compiled Successfully');
-            // console.log(result);
+            
         } catch (error) {
             toast.error('Error Compiling Code');
             console.log(error);
@@ -286,7 +289,7 @@ const CodeEditor = () => {
                         </button>
                     </div>
                     {output && expectedOutput && result && <div>
-                        {expectedOutput.trim()===output?.output ? 
+                        {result==='Passed' ? 
                         <div className='px-3 py-1 text-green-500 rounded-[5px] bg-green-500/20'>Passed</div> :
                         <div className='px-3 py-1 text-red-500 rounded-[5px] bg-red-500/20'>Failed</div>}
                     </div>}
