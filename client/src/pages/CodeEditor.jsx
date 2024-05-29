@@ -314,7 +314,7 @@ const CodeEditor = () => {
                     </div>
                     <div className='text-white text-sm overflow-scroll w-full min-h-0 grow'>
                         {output ? 
-                        (output?.output?.split('\n').map((line,index)=>(
+                        (output?.output?.trim()?.split('\n')?.map((line,index)=>(
                             <div key={index}>{line}<br/></div>
                         ))) : 
                         <span className='text-neutral-500 italic'>Nothing to show</span>}
