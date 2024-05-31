@@ -1,17 +1,18 @@
-import {useContext, useState} from 'react';
+import {useContext, useRef, useState} from 'react';
 import { Modal, ConfigProvider } from 'antd';
-import { FiCodesandbox } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
-import { FaCode } from "react-icons/fa6";
 import AppContext from '../context/AppContext';
 import { useNavigate } from 'react-router-dom';
 import logo from '/icon.png'
+import DevIcon from '../assets/dev.png'
+import { FaCode, FaLinkedinIn, FaGithub, FaInstagram } from "react-icons/fa6";
 
 
 const Header = () => {
 
     const {user,setUser,setCodes,setCurrCode} = useContext(AppContext);
     const [modalOpen, setModalOpen] = useState(false);
+    const [infoModalOpen, setInfoModalOpen] = useState(false);
     const navigate = useNavigate();
 
     const loginRedirect = () => {
@@ -30,16 +31,22 @@ const Header = () => {
         setModalOpen(false);
     }
 
+    const linkRedirect = (link)=>{
+        window.open(link, '_blank');
+    }
+
+
+
     return (
         <div className='w-full flex items-center justify-between px-5 h-[45px] bg-[#007cc4] text-white'>
-            <div className='flex items-center gap-1'>
+            <div className='h-full px-2 py-0.5 flex items-center gap-1 cursor-pointer bg-white/20 hover:bg-white/40' onClick={()=>setInfoModalOpen(true)}>
                 <img src={logo} alt="" className='size-8'/>
                 <span className='text-lg'>CodeLab</span>
             </div>
             {!user?.token ? <div className='flex items-center gap-2 text-sm h-full'>
                 <button 
                     onClick={()=>setModalOpen(true)} 
-                    className='px-3 py-1 bg-[#007cc4] text-white h-full hover:bg-white/40 bg-white/20'
+                    className='px-3 py-1 text-white h-full hover:bg-white/40 bg-white/20'
                 >
                     Login to save codes
                 </button>
@@ -131,6 +138,75 @@ const Header = () => {
                             </div>
                         </div>
                     </div>}
+                </Modal>
+
+                <Modal
+                    open={infoModalOpen}
+                    onClose={()=>setInfoModalOpen(false)}
+                    onOk={()=>setInfoModalOpen(false)}
+                    onCancel={()=>setInfoModalOpen(false)}
+                    title={false}
+                    footer={false}
+                    width= 'fit-content'
+                    styles={{
+                        content: {
+                            color:'white', 
+                            backgroundColor:'black', 
+                            border:'1px solid #363636', 
+                            display:'flex',
+                            justifyContent:'center', 
+                            alignItems:'center',
+                        }
+                    }}
+                >
+                    <div className='h-full w-full flex flex-col items-center justify-center gap-3'>
+                        <img src={DevIcon} alt="" className='size-32'/>
+                        <div className='text-center text-xl flex flex-col items-center justify-center gap-1'>
+                            <span className=''>This project is developed and maintained by</span>
+                            <span className='font-bold text-2xl'>Harsh Priye</span>
+                        </div>
+                        <div className='w-full flex items-center justify-center gap-2 flex-wrap'>
+                            <div
+                                className='transition-all duration-200 flex items-center justify-center text-center gap-2 rounded-full p-1 bg-white text-black border-2 border-white cursor-pointer hover:bg-black hover:text-white'
+                                onClick={()=>linkRedirect('https://www.harshpriye.online')}
+                            >
+                                <FaCode size={20}/>
+                                <div>Portfolio</div>
+                            </div>
+                            <div
+                                className='transition-all duration-200 flex items-center justify-center text-center gap-2 rounded-full p-1 bg-white text-black border-2 border-white cursor-pointer hover:bg-black hover:text-white'
+                                onClick={()=>linkRedirect('https://www.linkedin.com/in/harshpx/')}
+                            >
+                                <FaLinkedinIn size={20}/>
+                                <div>Linkedin</div>
+                            </div>
+                            <div 
+                                className='transition-all duration-200 flex items-center justify-center text-center gap-2 rounded-full p-1 bg-white text-black border-2 border-white cursor-pointer hover:bg-black hover:text-white'
+                                onClick={()=>linkRedirect('https://github.com/harshpx')}
+                            >
+                                <FaGithub size={20}/>
+                                <div>GitHub</div>
+                            </div>
+                            <div
+                                className='transition-all duration-200 flex items-center justify-center text-center gap-2 rounded-full p-1 bg-white text-black border-2 border-white cursor-pointer hover:bg-black hover:text-white'
+                                onClick={()=>linkRedirect('https://www.instagram.com/harshhh.hhhh/')}
+                            >
+                                <FaInstagram size={20}/>
+                                <div>Instagram</div>
+                            </div>
+                        </div>
+                        <div className='mt-12 flex items-center justify-center gap-2 flex-wrap'>
+                            <FaCode size={19}/> 
+                            <span className='text-[16px]'>Source Code:</span>
+                            <a 
+                                href="https://github.com/harshpx/CodeLab" 
+                                target="_blank" 
+                                className='transition-all duration-200 text-[16px] text-[#5fc4ff] hover:underline'
+                            >
+                                github.com/harshpx/CodeLab
+                            </a>
+                        </div>
+                    </div>
                 </Modal>
             </ConfigProvider>
         </div>
