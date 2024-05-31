@@ -108,21 +108,21 @@ const Header = () => {
                             Sign in with <FcGoogle size={24}/>
                         </button>
                     </div> : 
-                    <div className='flex items-center gap-4 px-2'>
+                    <div className='flex flex-col items-center justify-center gap-4 px-2'>
                         <div 
-                            className="size-32 rounded-full" 
+                            className="size-40 rounded-full" 
                             style={{
                                 backgroundImage: `url(${user.dp})`, 
                                 backgroundSize:'cover', 
                                 backgroundPosition:'center'
                             }}
                         />
-                        <div className='flex flex-col items-start gap-3'>
-                            <div className='flex flex-col items-start'>
-                                <span className='text-[30px]'>{user.name}</span>
+                        <div className='flex flex-col items-start justify-center gap-3'>
+                            <div className='flex flex-col items-center justify-center'>
+                                <span className='text-[40px]'>{user.name}</span>
                                 <span className='text-[15px] text-neutral-400'>{user.email}</span>
                             </div>
-                            <div className='flex items-center gap-2'>
+                            <div className='w-full flex justify-center items-center gap-2 mt-3'>
                                 <button 
                                 className='px-2 py-1 rounded-md bg-neutral-500/40 hover:bg-[#007cc4]'
                                 onClick={myCodesHandler}
