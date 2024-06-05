@@ -1,4 +1,4 @@
-import {useContext, useRef, useState} from 'react';
+import {useContext, useEffect, useRef, useState} from 'react';
 import { Modal, ConfigProvider } from 'antd';
 import { FcGoogle } from "react-icons/fc";
 import AppContext from '../context/AppContext';
@@ -41,6 +41,10 @@ const Header = () => {
     const handleImgError = () => {
         setDp(DefaultDP);
     }
+
+    useEffect(()=>{
+        if(user?.dp) setDp(user.dp);
+    },[user]);
 
 
 
