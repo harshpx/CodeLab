@@ -76,10 +76,8 @@ const CodeEditor = () => {
             setOutput(result);
 
             if(result?.output?.trim() === expectedOutput?.trim()){
-                console.log('match!');
                 setResult('Passed');
             } else{
-                console.log('no match!');
                 setResult('Failed');
             }
             setLoading(false);

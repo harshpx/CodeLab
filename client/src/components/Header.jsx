@@ -6,13 +6,16 @@ import { useNavigate } from 'react-router-dom';
 import logo from '/icon.png'
 import DevIcon from '../assets/dev.png'
 import { FaCode, FaLinkedinIn, FaGithub, FaInstagram } from "react-icons/fa6";
-
+import useWindowWidth from '../hooks/useWindowWidth';
+import DefaultDP from '../assets/dev.png';
 
 const Header = () => {
 
     const {user,setUser,setCodes,setCurrCode} = useContext(AppContext);
+    const [dp,setDp] = useState(user?.dp);
     const [modalOpen, setModalOpen] = useState(false);
     const [infoModalOpen, setInfoModalOpen] = useState(false);
+    const {isMobile} = useWindowWidth();
     const navigate = useNavigate();
 
     const loginRedirect = () => {
@@ -35,18 +38,22 @@ const Header = () => {
         window.open(link, '_blank');
     }
 
+    const handleImgError = () => {
+        setDp(DefaultDP);
+    }
+
 
 
     return (
-        <div className='w-full flex items-center justify-between px-5 h-[45px] bg-[#007cc4] text-white'>
-            <div className='h-full px-2 py-0.5 flex items-center gap-1 cursor-pointer bg-white/20 hover:bg-white/40' onClick={()=>setInfoModalOpen(true)}>
+        <div className='w-full flex items-center justify-between h-[45px] bg-[#007cc4] text-white'>
+            <div className='h-full px-4 py-0.5 flex items-center gap-1 cursor-pointer bg-white/20 hover:bg-white/40' onClick={()=>setInfoModalOpen(true)}>
                 <img src={logo} alt="" className='size-8'/>
                 <span className='text-lg'>CodeLab</span>
             </div>
             {!user?.token ? <div className='flex items-center gap-2 text-sm h-full'>
                 <button 
                     onClick={()=>setModalOpen(true)} 
-                    className='px-3 py-1 text-white h-full hover:bg-white/40 bg-white/20'
+                    className='px-4 text-white h-full hover:bg-white/40 sm:bg-white/20'
                 >
                     Login to save codes
                 </button>
@@ -54,19 +61,19 @@ const Header = () => {
             <div className='flex items-center gap-2 h-full'>
                 <button
                     onClick={()=>setModalOpen(true)}
-                    className='flex items-center gap-2 hover:bg-white/30 px-2 h-full'
+                    className='flex items-center gap-2 hover:bg-white/30 px-4 h-full'
                 >
                     <div className='rounded-full size-8 overflow-hidden'>
-                        <img src={user.dp} alt="user-dp" className='w-full h-full object-cover'/>
+                        <img src={dp} alt="user dp" onError={handleImgError} className='w-full h-full object-cover'/>
                     </div>
                     <span className='text-[14px]'>Hi {user.name.split(' ')[0]}!</span>
                 </button>
                 <button
                     onClick={myCodesHandler}
-                    className='flex items-center gap-2 hover:bg-white/30 px-2 h-full'
+                    className='flex items-center gap-2 hover:bg-white/30 px-4 h-full'
                 >
                     <FaCode size={20}/>
-                    <span className='text-[14px]'>My Codes</span>
+                    {!isMobile ? <span className='text-[14px]'>My Codes</span> : null}
                 </button>
             </div>}
             <ConfigProvider
@@ -112,7 +119,7 @@ const Header = () => {
                         <div 
                             className="size-40 rounded-full" 
                             style={{
-                                backgroundImage: `url(${user.dp})`, 
+                                backgroundImage: `url(${dp})`, 
                                 backgroundSize:'cover', 
                                 backgroundPosition:'center'
                             }}
