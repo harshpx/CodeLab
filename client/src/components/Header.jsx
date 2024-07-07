@@ -86,6 +86,7 @@ const Header = () => {
                 }}
             >
                 <Modal
+                    centered
                     open={modalOpen}
                     onClose={()=>setModalOpen(false)}
                     onOk={()=>setModalOpen(false)}
@@ -152,6 +153,7 @@ const Header = () => {
                 </Modal>
 
                 <Modal
+                    centered
                     open={infoModalOpen}
                     onClose={()=>setInfoModalOpen(false)}
                     onOk={()=>setInfoModalOpen(false)}
@@ -170,43 +172,47 @@ const Header = () => {
                         }
                     }}
                 >
-                    <div className='h-full w-full flex flex-col items-center justify-center gap-3'>
+                    <div className='h-full w-full flex flex-col items-center justify-center gap-6'>
                         <img src={DevIcon} alt="" className='size-32'/>
                         <div className='text-center text-xl flex flex-col items-center justify-center gap-1'>
                             <span className=''>This project is developed and maintained by</span>
                             <span className='font-bold text-2xl'>Harsh Priye</span>
                         </div>
-                        <div className='w-full flex items-center justify-center gap-2 flex-wrap'>
+                        <div className='w-full flex items-center justify-center gap-3 flex-wrap'>
                             <div
-                                className='transition-all duration-200 flex items-center justify-center text-center gap-2 rounded-full p-1 bg-white text-black border-2 border-white cursor-pointer hover:bg-black hover:text-white'
-                                onClick={()=>linkRedirect('https://www.harshpriye.online')}
+                                className='transition-all duration-200 flex items-center justify-center text-center gap-2 rounded-full p-1 bg-white text-black border-2 border-white cursor-pointer hover:bg-black hover:text-white hover:scale-125'
+                                onClick={()=>linkRedirect('https://www.harshpriye.in')}
                             >
                                 <FaCode size={20}/>
                                 <div>Portfolio</div>
                             </div>
                             <div
-                                className='transition-all duration-200 flex items-center justify-center text-center gap-2 rounded-full p-1 bg-white text-black border-2 border-white cursor-pointer hover:bg-black hover:text-white'
+                                className='transition-all duration-200 flex items-center justify-center text-center gap-2 rounded-full p-1 bg-white text-black border-2 border-white cursor-pointer hover:bg-black hover:text-white hover:scale-125'
                                 onClick={()=>linkRedirect('https://www.linkedin.com/in/harshpx/')}
                             >
                                 <FaLinkedinIn size={20}/>
                                 <div>Linkedin</div>
                             </div>
                             <div 
-                                className='transition-all duration-200 flex items-center justify-center text-center gap-2 rounded-full p-1 bg-white text-black border-2 border-white cursor-pointer hover:bg-black hover:text-white'
+                                className='transition-all duration-200 flex items-center justify-center text-center gap-2 rounded-full p-1 bg-white text-black border-2 border-white cursor-pointer hover:bg-black hover:text-white hover:scale-125'
                                 onClick={()=>linkRedirect('https://github.com/harshpx')}
                             >
                                 <FaGithub size={20}/>
                                 <div>GitHub</div>
                             </div>
                             <div
-                                className='transition-all duration-200 flex items-center justify-center text-center gap-2 rounded-full p-1 bg-white text-black border-2 border-white cursor-pointer hover:bg-black hover:text-white'
+                                className='transition-all duration-200 flex items-center justify-center text-center gap-2 rounded-full p-1 bg-white text-black border-2 border-white cursor-pointer hover:bg-black hover:text-white hover:scale-125'
                                 onClick={()=>linkRedirect('https://www.instagram.com/harshhh.hhhh/')}
                             >
                                 <FaInstagram size={20}/>
                                 <div>Instagram</div>
                             </div>
                         </div>
-                        <div className='mt-12 flex items-center justify-center gap-2 flex-wrap'>
+                        <div className='text-center text-[15px]'>
+                            This project is built using React.js, Tailwind CSS and Ant Design,<br/>alongwith Node+Express.js and MongoDB.<br/>
+                            And is powered by JDoodle.
+                        </div>
+                        <div className='flex items-center justify-center gap-2 flex-wrap'>
                             <FaCode size={19}/> 
                             <span className='text-[16px]'>Source Code:</span>
                             <a 
