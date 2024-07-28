@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Editor from '@monaco-editor/react'
 import LanguageSelector from '../components/LanguageSelector'
-import { FaCode, FaPlus, FaMinus, FaChevronDown, FaChevronUp } from "react-icons/fa6";
+import { FaCode, FaPlus, FaMinus, FaChevronDown, FaChevronUp, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { RiInputCursorMove } from "react-icons/ri";
 import { LuFileOutput } from "react-icons/lu";
 import useWindowWidth from '../hooks/useWindowWidth'
@@ -46,6 +46,7 @@ const CodeEditor = () => {
     const [showExpectedOutput,setShowExpectedOutput] = useState(false);
     const [result,setResult] = useState('');
     const [showInputBox,setShowInputBox] = useState(true);
+    const [showIOBar,setShowIOBar] = useState(true);
 
     useEffect(()=>{
         if(currCode){
@@ -162,7 +163,7 @@ const CodeEditor = () => {
             {loading && <Loader/>}
 
             {/* code editor layout */}
-            <div className='h-3/4 md:h-full w-full md:w-2/3'>
+            <div className={`h-3/4 md:h-full ${isMobile || !showIOBar? 'w-full' : 'w-2/3'}`}>
                 {/* code editor box */}
                 <div className='h-full w-full p-2 md:p-4 gap-2 bg-[#1e1e1e] flex flex-col items-center'>
                     {/* headerbar for code area */}
@@ -243,13 +244,19 @@ const CodeEditor = () => {
                             >
                                 <FaMinus/>
                             </button>
+                            {!isMobile && <button
+                                className='rounded-[5px] px-2 py-1 w-[120px] flex items-center justify-center text-white text-[13px] bg-neutral-500/40 hover:bg-[#007cc4]'
+                                onClick={()=>setShowIOBar(prev=>!prev)}
+                            >
+                                {showIOBar ? <div className='flex items-center justify-center gap-2'>Collapse IO<FaChevronRight/></div> : <div className='flex items-center justify-center gap-2'><FaChevronLeft/>Show IO</div>}
+                            </button>}
                         </div>
                     </div>
                 </div>
             </div>
 
             {/* I/O layout */}
-            <div className='flex md:flex-col items-center justify-center gap-2 h-1/4 md:h-full w-full md:w-1/3 overflow-scroll'>
+            {(isMobile || showIOBar) && <div className='flex md:flex-col items-center justify-center gap-2 h-1/4 md:h-full w-full md:w-1/3 overflow-scroll'>
                 {/* input box */}
                 <div className='w-full h-full md:h-fit p-2 md:p-4 gap-2 bg-[#1e1e1e] flex flex-col items-start'>
                     <div className='flex items-center justify-between h-[30px] w-full'>
@@ -325,7 +332,7 @@ const CodeEditor = () => {
                         <span>Memory: {output.memory}</span>
                     </div>}
                 </div>
-            </div>
+            </div>}
 
         </div>
     )
