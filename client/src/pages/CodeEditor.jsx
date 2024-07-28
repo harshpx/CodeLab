@@ -66,6 +66,7 @@ const CodeEditor = () => {
     const [loading,setLoading] = useState(false);
 
     const runCode = async (language,code,input) => {
+        setShowIOBar(true);
         if(!code){
             toast('Enter some code first');
             return;
@@ -81,12 +82,12 @@ const CodeEditor = () => {
             } else{
                 setResult('Failed');
             }
-            setLoading(false);
             toast.success('Code Compiled Successfully');
-            
         } catch (error) {
             toast.error('Error Compiling Code');
             console.log(error);
+        } finally{
+            setLoading(false);
         }
     }
 
