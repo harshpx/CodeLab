@@ -31,17 +31,9 @@ const Signup = () => {
         }
     }
 
-    if(loading){
-        return (
-            <div className='absolute min-h-screen min-w-full opacity-30 flex items-center justify-center'>
-                <Loader/>
-            </div>
-        )
-    }
 
     return(
         <div className='h-full w-full flex items-center justify-center relative overflow-hidden text-white' ref={ref}>  
- 
             <ConfigProvider
                 theme={{
                     token:{
