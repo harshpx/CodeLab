@@ -104,3 +104,39 @@ export const deleteCode = async (user, id) => {
         console.log(error);
     }
 }
+
+export const basicLogin = async (data) => {
+    const url = 'https://codelab-server-harshpx.vercel.app/api/basicauth/login';
+    const options = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }
+    try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const basicSignup = async (data) => {
+    const url = 'https://codelab-server-harshpx.vercel.app/api/basicauth/signup';
+    const options = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }
+    try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+}

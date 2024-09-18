@@ -6,8 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import logo from '/icon.png'
 import DevIcon from '../assets/dev.png'
 import { FaCode, FaLinkedinIn, FaGithub, FaInstagram } from "react-icons/fa6";
+import { IoMdMail } from "react-icons/io";
 import useWindowWidth from '../hooks/useWindowWidth';
 import DefaultDP from '../assets/dev.png';
+import BasicAuth from './BasicAuth';
 
 const Header = () => {
 
@@ -15,6 +17,9 @@ const Header = () => {
     const [dp,setDp] = useState(user?.dp);
     const [modalOpen, setModalOpen] = useState(false);
     const [infoModalOpen, setInfoModalOpen] = useState(false);
+
+    const [basicAuth, setBasicAuth] = useState(false);
+
     const {isMobile} = useWindowWidth();
     const navigate = useNavigate();
 
@@ -70,7 +75,7 @@ const Header = () => {
                     <div className='rounded-full size-8 overflow-hidden'>
                         <img src={dp} alt="user dp" onError={handleImgError} className='w-full h-full object-cover'/>
                     </div>
-                    <span className='text-[14px]'>Hi {user.name.split(' ')[0]}!</span>
+                    <span className='text-[14px]'>Hi {user?.name?.split(' ')[0]}!</span>
                 </button>
                 <button
                     onClick={myCodesHandler}
@@ -88,12 +93,12 @@ const Header = () => {
                 <Modal
                     centered
                     open={modalOpen}
-                    onClose={()=>setModalOpen(false)}
-                    onOk={()=>setModalOpen(false)}
-                    onCancel={()=>setModalOpen(false)}
+                    onClose={()=>{setModalOpen(false); setBasicAuth(false);}}
+                    onOk={()=>{setModalOpen(false); setBasicAuth(false);}}
+                    onCancel={()=>{setModalOpen(false); setBasicAuth(false);}}
                     title={false}
                     footer={false}
-                    width= {!user?.token ? 450 : "fit-content"}
+                    width= {"fit-content"}
                     styles={{
                         content: {
                             color:'white', 
@@ -106,20 +111,29 @@ const Header = () => {
                     }}
                 >
                     {!user?.token ? 
-                    <div className='flex flex-col items-center gap-5'>
-                        <h1 className='text-2xl text-center flex items-center gap-4'>
-                            <span className='text-right text-xl w-1/2'>Login/Register with</span>
-                            <div className='flex items-center gap-1 w-1/2'>
-                                <img src={logo} alt="" className='size-8'/> <span>CodeLab</span>
+                        (basicAuth ? <BasicAuth/> : 
+                        <div className='flex flex-col items-center gap-5'>
+                            <h1 className='text-2xl text-center flex items-center gap-4'>
+                                <span className='text-right text-xl w-1/2'>Login/Register with</span>
+                                <div className='flex items-center gap-1 w-1/2'>
+                                    <img src={logo} alt="" className='size-8'/> <span>CodeLab</span>
+                                </div>
+                            </h1>
+                            <div className='flex flex-col items-center justify-center gap-4'>
+                                <button
+                                className='rounded-md bg-neutral-500/40 hover:bg-neutral-500 px-4 py-1 flex items-center gap-2 text-[15px]'
+                                onClick={loginRedirect}
+                                >
+                                    Sign in with <FcGoogle size={24}/>
+                                </button>
+                                <button
+                                className='rounded-md bg-neutral-500/40 hover:bg-neutral-500 px-4 py-1 flex items-center gap-2 text-[15px]'
+                                onClick={()=>setBasicAuth(true)}
+                                >
+                                    Get started with <IoMdMail size={24}/>
+                                </button>
                             </div>
-                        </h1>
-                        <button
-                        className='rounded-md bg-neutral-500/40 hover:bg-neutral-500 px-4 py-1 flex items-center gap-2 text-[15px]'
-                        onClick={loginRedirect}
-                        >
-                            Sign in with <FcGoogle size={24}/>
-                        </button>
-                    </div> : 
+                        </div>) :
                     <div className='flex flex-col items-center justify-center gap-4 px-2'>
                         <div 
                             className="size-40 rounded-full" 
