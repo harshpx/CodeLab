@@ -12,11 +12,11 @@ const AuthRedirect = () => {
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const token = searchParams.get('token');
-        const name = searchParams.get('name');
+        const displayName = searchParams.get('name');
         const email = searchParams.get('email');
         const dp = searchParams.get('dp');
         if(token) {
-            const userData = {token,name,email,dp};
+            const userData = {token,displayName,email,dp};
             localStorage.setItem('currUser',JSON.stringify(userData));
             setUser(userData)
             // console.log(userData);

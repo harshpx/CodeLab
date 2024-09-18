@@ -75,7 +75,7 @@ const Header = () => {
                     <div className='rounded-full size-8 overflow-hidden'>
                         <img src={dp} alt="user dp" onError={handleImgError} className='w-full h-full object-cover'/>
                     </div>
-                    <span className='text-[14px]'>Hi {user?.name?.split(' ')[0]}!</span>
+                    <span className='text-[14px]'>Hi {user?.displayName?.split(' ')[0]}!</span>
                 </button>
                 <button
                     onClick={myCodesHandler}
@@ -145,7 +145,7 @@ const Header = () => {
                         />
                         <div className='flex flex-col items-start justify-center gap-3'>
                             <div className='flex flex-col items-center justify-center'>
-                                <span className='text-[40px]'>{user.name}</span>
+                                <span className='text-[40px]'>{user.displayName}</span>
                                 <span className='text-[15px] text-neutral-400'>{user.email}</span>
                             </div>
                             <div className='w-full flex justify-center items-center gap-2 mt-3'>
