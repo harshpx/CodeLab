@@ -9,6 +9,7 @@ import connectDB from './utils/connectDB.js';
 import compileRoute from './routes/compileRoute.js';
 import googleAuthRoute from './routes/googleAuthRoute.js';
 import codeRoute from './routes/codeRoute.js';
+import basicAuthRoute from './routes/basicAuthRoute.js';
 import errorHandler from './middlewares/errorHandler.js';
 
 const app = express();
@@ -39,6 +40,7 @@ app.route('/').get((req, res) => {
 app.use('/api/compile', compileRoute);
 app.use('/api/auth', googleAuthRoute);
 app.use('/api/codes', codeRoute);
+app.use('/api/basicauth', basicAuthRoute);
 
 app.use(errorHandler);
 

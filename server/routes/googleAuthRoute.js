@@ -24,12 +24,12 @@ googleAuthRoute.get('/google/callback',
         const user = req.user;
         const token = generateToken(user.userId);
 
-        const output = {
-            token: token,
-            diaplayName: user?.displayName,
-            email: user?.email,
-            dp: user?.dp,
-        }
+        // const output = {
+        //     token: token,
+        //     diaplayName: user?.displayName,
+        //     email: user?.email,
+        //     dp: user?.dp,
+        // }
 
         res.redirect(`https://codelab-code.vercel.app/auth?token=${token}&name=${user?.displayName}&email=${user?.email}&dp=${user?.dp}`);
         // console.log(output);
