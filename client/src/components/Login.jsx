@@ -20,10 +20,9 @@ const Login = () => {
             setLoading(true);
             const data = await basicLogin(values);
             if(typeof data==='undefined'){
-                throw new Error('Invalid Credentials!');
-            } else if(data.error){
-                throw new Error('Invalid Credentials!');
-            } else if(!data.hasOwnProperty('token')){
+                throw new Error('Unable to login');
+            }
+            else if(!data.hasOwnProperty('token')){
                 throw new Error('Invalid Credentials!');
             }
             setUser(data);

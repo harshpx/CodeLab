@@ -19,6 +19,12 @@ const Signup = () => {
         try {
             setLoading(true);
             const data = await basicSignup(values);
+            if(typeof data==='undefined'){
+                throw new Error('Unable to Signup');
+            }
+            else if(!data.hasOwnProperty('token')){
+                throw new Error('Server Error!');
+            }
             setUser(data);
             localStorage.setItem('currUser',JSON.stringify(data));
             toast.success('Logged in Successfully!');

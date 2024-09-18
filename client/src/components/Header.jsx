@@ -144,9 +144,9 @@ const Header = () => {
                             }}
                         />
                         <div className='flex flex-col items-start justify-center gap-3'>
-                            <div className='flex flex-col items-center justify-center'>
-                                <span className='text-[40px]'>{user.displayName}</span>
-                                <span className='text-[15px] text-neutral-400'>{user.email}</span>
+                            <div className='flex flex-col items-center justify-center w-full'>
+                                <span className='text-[40px] text-center'>{user.displayName}</span>
+                                <span className='text-[15px] text-neutral-400 text-center'>{user.email}</span>
                             </div>
                             <div className='w-full flex justify-center items-center gap-2 mt-3'>
                                 <button 
