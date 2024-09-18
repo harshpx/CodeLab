@@ -31,7 +31,7 @@ googleAuthRoute.get('/google/callback',
         //     dp: user?.dp,
         // }
 
-        res.redirect(`https://codelab-code.vercel.app/auth?token=${token}&name=${user?.displayName}&email=${user?.email}&dp=${user?.dp}`);
+        res.redirect(`https://codelab-code.vercel.app/auth?token=${token}&displayName=${user?.displayName}&email=${user?.email}&dp=${user?.dp}`);
         // console.log(output);
     }
 );

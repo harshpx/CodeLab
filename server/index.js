@@ -18,7 +18,7 @@ connectDB();
 
 app.use(cors(
     {
-        origin: ['https://codelab-harshpx.vercel.app/','http://localhost:5173/'],
+        origin: ['https://codelab-harshpx.vercel.app/','https://codelab-code.vercel.app/','http://localhost:5173/'],
         methods: ['GET', 'POST', 'PUT', 'DELETE'],
         allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true,

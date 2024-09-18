@@ -31,7 +31,7 @@ export const signup = expressAsyncHandler(async (req,res)=>{
     
     if(user){
         res.status(201).json({
-            name: user.name,
+            displayName: user.displayName,
             email: user.email,
             token: generateToken(user.userId),
             dp: user.dp,
@@ -57,9 +57,9 @@ export const login = expressAsyncHandler(async (req,res)=>{
         throw new Error('User not found');
     }
 
-    if(await bcrypt.compare(password, user.password)){
+    if(bcrypt.compare(password, user.password)){
         res.status(200).json({
-            name: user.name,
+            displayName: user.displayName,
             email: user.email,
             token: generateToken(user.userId),
             dp: user.dp,
